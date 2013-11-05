@@ -18,3 +18,14 @@ A simple command-line &amp; web app that displays preferred programming language
 > Documentation for the GitHub API can be found at http://developer.github.com.
 
 
+
+
+### Background & Research
+
+- GitHub API (v3) Documentation: http://developer.github.com/v3/
+- List of existing node.js GitHub-related modules: 
+https://npmjs.org/search?q=github
+- Out of the list I chose Ajax.org's **node-github** 
+https://github.com/ajaxorg/node-github
+
+
