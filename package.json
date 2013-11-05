@@ -12,7 +12,8 @@
     "chai":"*"
   },
   "dependencies": {
-    "github":"*"
+    "github":"*",
+    "oauth":"*"
   }, 
   "scripts": {
     "test": "mocha"
