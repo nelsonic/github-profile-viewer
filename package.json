@@ -11,6 +11,9 @@
     "mocha": "*",
     "chai":"*"
   },
+  "dependencies": {
+    "github":"*"
+  }, 
   "scripts": {
     "test": "mocha"
   }
