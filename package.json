@@ -1,0 +1,17 @@
+{
+  "name": "github-profile-viewer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nelsonic/github-profile-viewer.git"
+  },
+  "description": "A GitHub Profile Viewer (Focus on Preferred Programming Language)",
+  "author": "https://twitter.com/nelsonic",
+  "version": "0.0.1",
+  "devDependencies": {
+    "mocha": "*",
+    "chai":"*"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
