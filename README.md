@@ -79,20 +79,131 @@ var github = new GitHubApi({
     timeout: 5000
 });
 github.user.getFollowingFromUser({
-    user: "nelsonic"
+    user: "mikedeboer"
 }, function(err, res) {
     console.log(JSON.stringify(res));
 });
 ```
 
 At this point we don't know what to *expect* from the output, so lets just
-explore what it looks like first.
+explore what it looks like first. 
 
 ```json
-[{"login":"fjakobs","id":40952,"avatar_url":"https://2.gravatar.com/avatar/05d0b094455964dc1d8e6c2ece4c27fe?d=https%3A%2F%2Fidenticons.github.com%2F5b0f48ce1d186742852c2ef897f8a0a0.png&r=x","gravatar_id":"05d0b094455964dc1d8e6c2ece4c27fe","url":"https://api.github.com/users/fjakobs","html_url":"https://github.com/fjakobs","followers_url":"https://api.github.com/users/fjakobs/followers","following_url":"https://api.github.com/users/fjakobs/following{/other_user}","gists_url":"https://api.github.com/users/fjakobs/gists{/gist_id}","starred_url":"https://api.github.com/users/fjakobs/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/fjakobs/subscriptions","organizations_url":"https://api.github.com/users/fjakobs/orgs","repos_url":"https://api.github.com/users/fjakobs/repos","events_url":"https://api.github.com/users/fjakobs/events{/privacy}","received_events_url":"https://api.github.com/users/fjakobs/received_events","type":"User","site_admin":false},{"login":"jasny","id":100821,"avatar_url":"https://2.gravatar.com/avatar/0bba82e8b2a9d2cf9645cb07ea54766f?d=https%3A%2F%2Fidenticons.github.com%2F217201cfee7bb52533480b816c0918b3.png&r=x","gravatar_id":"0bba82e8b2a9d2cf9645cb07ea54766f","url":"https://api.github.com/users/jasny","html_url":"https://github.com/jasny","followers_url":"https://api.github.com/users/jasny/followers","following_url":"https://api.github.com/users/jasny/following{/other_user}","gists_url":"https://api.github.com/users/jasny/gists{/gist_id}","starred_url":"https://api.github.com/users/jasny/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/jasny/subscriptions","organizations_url":"https://api.github.com/users/jasny/orgs","repos_url":"https://api.github.com/users/jasny/repos","events_url":"https://api.github.com/users/jasny/events{/privacy}","received_events_url":"https://api.github.com/users/jasny/received_events","type":"User","site_admin":false},{"login":"hij1nx","id":136109,"avatar_url":"https://2.gravatar.com/avatar/2c03b6faf7b9816f159af69e240221fd?d=https%3A%2F%2Fidenticons.github.com%2Fba4b7ee018c64f0139f37618abfaf498.png&r=x","gravatar_id":"2c03b6faf7b9816f159af69e240221fd","url":"https://api.github.com/users/hij1nx","html_url":"https://github.com/hij1nx","followers_url":"https://api.github.com/users/hij1nx/followers","following_url":"https://api.github.com/users/hij1nx/following{/other_user}","gists_url":"https://api.github.com/users/hij1nx/gists{/gist_id}","starred_url":"https://api.github.com/users/hij1nx/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/hij1nx/subscriptions","organizations_url":"https://api.github.com/users/hij1nx/orgs","repos_url":"https://api.github.com/users/hij1nx/repos","events_url":"https://api.github.com/users/hij1nx/events{/privacy}","received_events_url":"https://api.github.com/users/hij1nx/received_events","type":"User","site_admin":false}]
+[{
+    "login": "fjakobs",
+    "id": 40952,
+    "avatar_url": "https://2.gravatar.com/avatar/05d0b094455964dc1d8e6c2ece4c27fe?d=https://identicons.github.com/5b0f48ce1d186742852c2ef897f8a0a0.png&r=x",
+    "gravatar_id": "05d0b094455964dc1d8e6c2ece4c27fe",
+    "url": "https://api.github.com/users/fjakobs",
+    "html_url": "https://github.com/fjakobs",
+    "followers_url": "https://api.github.com/users/fjakobs/followers",
+    "following_url": "https://api.github.com/users/fjakobs/following{/other_user}",
+    "gists_url": "https://api.github.com/users/fjakobs/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/fjakobs/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/fjakobs/subscriptions",
+    "organizations_url": "https://api.github.com/users/fjakobs/orgs",
+    "repos_url": "https://api.github.com/users/fjakobs/repos",
+    "events_url": "https://api.github.com/users/fjakobs/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/fjakobs/received_events",
+    "type": "User",
+    "site_admin": false
+}, {
+    "login": "jasny",
+    "id": 100821,
+    "avatar_url": "https://2.gravatar.com/avatar/0bba82e8b2a9d2cf9645cb07ea54766f?d=https://identicons.github.com/217201cfee7bb52533480b816c0918b3.png&r=x",
+    "gravatar_id": "0bba82e8b2a9d2cf9645cb07ea54766f",
+    "url": "https://api.github.com/users/jasny",
+    "html_url": "https://github.com/jasny",
+    "followers_url": "https://api.github.com/users/jasny/followers",
+    "following_url": "https://api.github.com/users/jasny/following{/other_user}",
+    "gists_url": "https://api.github.com/users/jasny/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/jasny/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/jasny/subscriptions",
+    "organizations_url": "https://api.github.com/users/jasny/orgs",
+    "repos_url": "https://api.github.com/users/jasny/repos",
+    "events_url": "https://api.github.com/users/jasny/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/jasny/received_events",
+    "type": "User",
+    "site_admin": false
+}, {
+    "login": "hij1nx",
+    "id": 136109,
+    "avatar_url": "https://2.gravatar.com/avatar/2c03b6faf7b9816f159af69e240221fd?d=https://identicons.github.com/ba4b7ee018c64f0139f37618abfaf498.png&r=x",
+    "gravatar_id": "2c03b6faf7b9816f159af69e240221fd",
+    "url": "https://api.github.com/users/hij1nx",
+    "html_url": "https://github.com/hij1nx",
+    "followers_url": "https://api.github.com/users/hij1nx/followers",
+    "following_url": "https://api.github.com/users/hij1nx/following{/other_user}",
+    "gists_url": "https://api.github.com/users/hij1nx/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/hij1nx/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/hij1nx/subscriptions",
+    "organizations_url": "https://api.github.com/users/hij1nx/orgs",
+    "repos_url": "https://api.github.com/users/hij1nx/repos",
+    "events_url": "https://api.github.com/users/hij1nx/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/hij1nx/received_events",
+    "type": "User",
+    "site_admin": false
+}]
 ```
 
+Then decided to try the oauth example:
+https://github.com/mikedeboer/node-github/blob/master/test/oauth.js
 
+Which gave the following output:
+
+```javascript
+{
+    "login": "nelsonic",
+    "id": 194400,
+    "avatar_url": "https://0.gravatar.com/avatar/e3838e553dba5b85a6d989dc72320b29?d=https%3A%2F%2Fidenticons.github.com%2F91f599166648db9d64ff927e2a28e4fe.png&r=x",
+    "gravatar_id": "e3838e553dba5b85a6d989dc72320b29",
+    "url": "https://api.github.com/users/nelsonic",
+    "html_url": "https://github.com/nelsonic",
+    "followers_url": "https://api.github.com/users/nelsonic/followers",
+    "following_url": "https://api.github.com/users/nelsonic/following{/other_user}",
+    "gists_url": "https://api.github.com/users/nelsonic/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/nelsonic/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/nelsonic/subscriptions",
+    "organizations_url": "https://api.github.com/users/nelsonic/orgs",
+    "repos_url": "https://api.github.com/users/nelsonic/repos",
+    "events_url": "https://api.github.com/users/nelsonic/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/nelsonic/received_events",
+    "type": "User",
+    "site_admin": false,
+    "name": "Nelson",
+    "company": "Good",
+    "blog": "none",
+    "location": "LDN",
+    "email": "nodecoder@gmail.com",
+    "hireable": false,
+    "bio": "Working for a small startup based in London.\r\nNot seeking employment unless its with an awesome startup.\r\n:-)\r\n",
+    "public_repos": 36,
+    "followers": 9,
+    "following": 22,
+    "created_at": "2010-02-02T08:44:49Z",
+    "updated_at": "2013-11-05T23:44:01Z",
+    "public_gists": 12,
+    "total_private_repos": 0,
+    "owned_private_repos": 0,
+    "disk_usage": 90006,
+    "collaborators": 0,
+    "plan": {
+        "name": "free",
+        "space": 307200,
+        "collaborators": 0,
+        "private_repos": 0
+    },
+    "private_gists": 0,
+    "meta": {
+        "x-ratelimit-limit": "5000",
+        "x-ratelimit-remaining": "4999",
+        "x-oauth-scopes": "gist, repo, user",
+        "last-modified": "Tue, 05 Nov 2013 23:44:01 GMT",
+        "etag": "\"0e8247fb44904b202ea1c88caf155f92\"",
+        "status": "200 OK"
+    }
+}
+```
 
 
 
