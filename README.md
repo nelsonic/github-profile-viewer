@@ -17,8 +17,7 @@ npm install
 
 ### Confirm its Working by Running the Unit Tests
 
-Once you have added your GitHub username & password to the **config.json**
-file, you can test that everything is working by running:
+Test that everything is working by running:
 
 ```sh
 npm test
@@ -26,11 +25,9 @@ npm test
 You should expect to see something like:
 
 ![istanbul tests passing](http://i.imgur.com/bOZAlQb.png "tests passing")
-or
-![mocha tests passing](http://i.imgur.com/UzHJEIb.png "tests passing")
 
 
-### A. Command Line App
+### A. Simple Command Line App
 
 Now you can run commands on the command line (username is an 
 *arbitrary* GitHub username of your chosing:
@@ -40,6 +37,8 @@ node commandLineApp username
 ```
 
 ![a few examples](http://i.imgur.com/tpARRpB.png "sample output from command line app")
+
+
 
 
 
