@@ -207,6 +207,40 @@ github.repos.getAll({user: "alibzafar"}, function(err, res) {
 
 But that only returned **my** (the user which authenticates) repos and **not**
 the repos for the user I am requesting as parameter for repos.getALL method!
+e.g:
+
+```javascript
+{ id: 13718252,
+    name: 'learn-mocha',
+    full_name: 'nelsonic/learn-mocha',
+    owner: 
+     { login: 'nelsonic',
+       id: 194400,
+       avatar_url: 'https://0.gravatar.com/avatar/e3838e553dba5b85a6d989dc72320b29?d=https%3A%2F%2Fidenticons.github.com%2F91f599166648db9d64ff927e2a28e4fe.png&r=x',
+       gravatar_id: 'e3838e553dba5b85a6d989dc72320b29',
+       url: 'https://api.github.com/users/nelsonic',
+       html_url: 'https://github.com/nelsonic',
+       followers_url: 'https://api.github.com/users/nelsonic/followers',
+       following_url: 'https://api.github.com/users/nelsonic/following{/other_user}',
+       gists_url: 'https://api.github.com/users/nelsonic/gists{/gist_id}',
+       starred_url: 'https://api.github.com/users/nelsonic/starred{/owner}{/repo}',
+       subscriptions_url: 'https://api.github.com/users/nelsonic/subscriptions',
+       organizations_url: 'https://api.github.com/users/nelsonic/orgs',
+       repos_url: 'https://api.github.com/users/nelsonic/repos',
+       events_url: 'https://api.github.com/users/nelsonic/events{/privacy}',
+       received_events_url: 'https://api.github.com/users/nelsonic/received_events',
+       type: 'User',
+       site_admin: false },
+    private: false,
+    html_url: 'https://github.com/nelsonic/learn-mocha',
+    description: 'A Quick Guide to mocha.js Test Driven Development (TDD) in node.js',
+    fork: false,
+    url: 'https://api.github.com/repos/nelsonic/learn-mocha',
+// etc
+```
+
+I filed an issue with the module creator/mantainer:
+https://github.com/mikedeboer/node-github/issues/108
 
 
 Then decided to try the oauth example:
@@ -268,7 +302,8 @@ Which gave the following output:
 }
 ```
 
-
+Still not returning the repos for the user I am specifying in the parameter!
+Thinking I might have to take a different approach here...
 
 
 ### Background & Research
