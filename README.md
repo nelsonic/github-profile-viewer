@@ -25,9 +25,9 @@ npm test
 ```
 You should expect to see something like:
 
-![tests passing](http://i.imgur.com/Zg2AEX4.png "tests passing")
+![istanbul tests passing](http://i.imgur.com/bOZAlQb.png "tests passing")
 or
-![tests passing](http://i.imgur.com/UzHJEIb.png "tests passing")
+![mocha tests passing](http://i.imgur.com/UzHJEIb.png "tests passing")
 
 
 ### A. Command Line App
@@ -56,10 +56,11 @@ node commandLineApp username
 
 > Documentation for the GitHub API can be found at http://developer.github.com
 
+- - -
 
-### Discussion
+### Detailed Solution Steps / Documentation
 
-#### Keep it Simple
+#### Keeping it Simple
 
 Let's start with something simple: a command-line app.
 We can progress to a more interesting web-app once we prove the concept.
@@ -425,21 +426,23 @@ A user we can *expect* to *consistently* use **JavaScript** as his
 - Added Unit Tests to ./test/**test.js**
 - Created **lib.js** to house module code and passed all tests
 
-![5 Tests Passing](http://i.imgur.com/eWbLqRg.png "all tests pass")
+![5 Tests Passing](http://i.imgur.com/bOZAlQb.png "all tests pass")
 
 - created **commandLineApp.js** to showcase the work.
 
 
 ### Getting Travis to Verify Unit Tests (Build)
 
-Because Travid CI will only be able to test the code if it has the GitHub
-username and password I would either have to create a Dummy User, 
+Because Travis CI will only be able to test the code if it has the GitHub
+username and password I have to create a Dummy User.
 
-Alternatively we can switch to using **Token** based authentication:
+... Alternatively we can switch to using **Token** based authentication:
 https://help.github.com/articles/creating-an-access-token-for-command-line-use
+(but that would still require exposing the token to Travis/Heroku so its 
+still open to abuse... best create a throw-away user we can expose)
 
 For simplicity, I created a dummy github user.
-(see config.json for credentials!)
+(see *config.json* for credentials!)
 
 add **travis.yml** file:
 

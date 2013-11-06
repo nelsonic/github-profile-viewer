@@ -2,7 +2,7 @@ var chai = require('chai');
 var assert = chai.assert; 
 var FL = require('../lib.js');  // our module
 
-describe('GitHub User Favorte Language', function(){
+describe('GitHub User Favorite Programming Language', function(){
   describe('Module FL', function(){
 
     it('should have a getListOfLanguagesForUser Method', function(){
