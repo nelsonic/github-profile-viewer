@@ -146,6 +146,69 @@ explore what it looks like first.
 }]
 ```
 
+Followers is not what this project requires so went digging through the API 
+and found **repos** method:
+
+```javascript
+var Client = require('github');
+
+var github = new Client({
+    debug: true,
+    version: "3.0.0"
+});
+
+github.repos.getAll({user: "nelsonic"}, function(err, res) {
+    console.log("GOT ERR?", err);
+    console.log("GOT RES?", res);
+});
+```
+
+Anoyingly, the repos method returns the following **error**:
+
+```
+REQUEST:  { host: 'api.github.com',
+  port: 443,
+  path: '/user/repos',
+  method: 'get',
+  headers: 
+   { host: 'api.github.com',
+     'content-length': '0',
+     'user-agent': 'NodeJS HTTP Client' } }
+STATUS: 401
+HEADERS: {"server":"GitHub.com","date":"Wed, 06 Nov 2013 00:08:45 GMT","content-type":"application/json; charset=utf-8","status":"401 Unauthorized","x-ratelimit-limit":"60","x-ratelimit-remaining":"55","x-ratelimit-reset":"1383697500","x-github-media-type":"github.beta; format=json","x-content-type-options":"nosniff","content-length":"90","access-control-allow-credentials":"true","access-control-expose-headers":"ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes","access-control-allow-origin":"*","x-github-request-id":"56077E62:77B0:13EB9D5:5279888C"}
+[error] { message: '{"message":"Requires authentication","documentation_url":"http://developer.github.com/v3"}',
+[error]   code: 401 } null alibzafar
+GOT ERR? { message: '{"message":"Requires authentication","documentation_url":"http://developer.github.com/v3"}',
+  code: 401 }
+GOT RES? undefined
+```
+
+So I tried it with basic authentication:
+
+```javascript
+var Client = require('github');
+
+var github = new Client({
+    debug: true,
+    version: "3.0.0"
+});
+
+github.authenticate({
+    type: "basic",
+    username: "nelsonic",
+    password: "******"
+});
+
+github.repos.getAll({user: "alibzafar"}, function(err, res) {
+    console.log("GOT ERR?", err);
+    console.log("GOT RES?", res);
+});
+```
+
+But that only returned **my** (the user which authenticates) repos and **not**
+the repos for the user I am requesting as parameter for repos.getALL method!
+
+
 Then decided to try the oauth example:
 https://github.com/mikedeboer/node-github/blob/master/test/oauth.js
 
