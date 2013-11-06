@@ -15,12 +15,6 @@ cd github-profile-viewer
 npm install
 ```
 
-Create your GitHub authentication configuration file using the sample
-and input your GitHub username & password:
-
-```sh
-cp config-SAMPLE.json config.json && vi config.json
-```
 ### Confirm its Working by Running the Unit Tests
 
 Once you have added your GitHub username & password to the **config.json**
@@ -439,7 +433,13 @@ A user we can *expect* to *consistently* use **JavaScript** as his
 ### Getting Travis to Verify Unit Tests (Build)
 
 Because Travid CI will only be able to test the code if it has the GitHub
-username and password I had to create a dummy github user...
+username and password I would either have to create a Dummy User, 
+
+Alternatively we can switch to using **Token** based authentication:
+https://help.github.com/articles/creating-an-access-token-for-command-line-use
+
+For simplicity, I created a dummy github user.
+(see config.json for credentials!)
 
 
 ### Background & Research
