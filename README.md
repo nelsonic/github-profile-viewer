@@ -1,4 +1,4 @@
-github-profile-viewer
+github-profile-viewer [![Build Status](https://travis-ci.org/nelsonic/github-profile-viewer.png?branch=master)](https://travis-ci.org/nelsonic/github-profile-viewer) [![Dependencies](https://david-dm.org/nelsonic/github-profile-viewer.png)](https://david-dm.org/nelsonic/github-profile-viewer)
 =====================
 
 A simple command-line &amp; web app that displays preferred programming language for a given GitHub user
@@ -440,6 +440,18 @@ https://help.github.com/articles/creating-an-access-token-for-command-line-use
 
 For simplicity, I created a dummy github user.
 (see config.json for credentials!)
+
+add **travis.yml** file:
+
+```sh
+vi .travis.yml
+```
+
+```yml
+language: node_js
+node_js:
+  - 0.8
+```
 
 
 ### Background & Research
