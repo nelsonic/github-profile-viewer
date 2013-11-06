@@ -1,7 +1,11 @@
-var FL = require('./lib.js');  // our module
-console.log(FL);
+var FL = require('./lib.js');                   // our module
+var username = process.argv[2] || "torvalds";   // command-line argument
+console.log("User: %s ",username);
 
-var username = "douglascrockford";
+FL.getListOfLanguagesForUser(username, function(languages){
+    console.log('\nLanguages: ' +JSON.stringify(languages));
+});
 
-var favoriteLanguage = FL.getFavoriteLanguageForUser(username);
-console.log(favoriteLanguage);
+FL.getFavoriteLanguageForUser(username, function(favLang) {
+    console.log("\n>> Favorite Language: ", favLang);    
+});

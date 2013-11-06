@@ -11,14 +11,9 @@ github.authenticate({
     password: config.github.password
 });
  
-var user = process.argv[2];   // command-line argument
-// console.log('User: %s',user);
+var FL = {};  // Favorite Language (FL) Module
 
-// Favorite Language (FL) Module
-var FL = {};
-
-FL.getFavoriteLanguageForUser = function(username) {
-    console.log('User: %s',username);
+FL.getListOfLanguagesForUser = function(username, callback) {
     var languages = {}; // used to store the language tally
 
     github.repos.getFromUser({user: username}, function(err, res) {
@@ -34,19 +29,18 @@ FL.getFavoriteLanguageForUser = function(username) {
             }           
         }
         delete languages[null]; // null values are useless
+        callback(languages);
+    });
+}
 
+FL.getFavoriteLanguageForUser = function(username, callback) {
+    FL.getListOfLanguagesForUser(username, function(languages){
         // sort the list of languages by frequency:
         var keysSorted = Object.keys(languages).sort(function(a,b) {
             return languages[b] - languages[a]
         })
-        var favLang = keysSorted[0]
-        console.log("Favorite Language: %s (%s repos)", favLang, languages[favLang] );
-        console.log("\nIn Decending Order: ");
-        for (var i = 0, j = keysSorted.length; i < j; i += 1) {
-            console.log(keysSorted[i] +" : " +languages[keysSorted[i]]);          
-        }
-        // return favLang;
-        return "JavaScript"
+        var favLang = keysSorted[0];
+        callback(favLang);
     });
 }
 

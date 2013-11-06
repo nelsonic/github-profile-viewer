@@ -12,7 +12,15 @@ If you want to try out this on your own machine, simply clone this repo:
 ```sh
 git clone git@github.com:nelsonic/github-profile-viewer.git
 ```
->> finish this at the end.
+
+Create your GitHub authentication configuration file using the sample
+and input your GitHub username & password:
+
+```sh
+cp config-SAMPLE.json config.json && vi config.json
+```
+
+
 
 
 ### Original Brief
@@ -375,6 +383,16 @@ github.authenticate({
 });
 ```
 
+To avoid exposing my GitHub password, add **config.json** to **.gitignore**
+then:
+
+```sh
+git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"
+```
+
+
 Now that we know how the GitHub api **getFromUser** method works, we can 
 write a test (with a predictable outcome) and create the CLI mini-app.
 
@@ -382,9 +400,20 @@ A user we can *expect* to *consistently* use **JavaScript** as his
 **favorite language** is **Douglas Crockford** 
 (see: https://github.com/douglascrockford?tab=repositories)
 
+### Long Story Short
+
+- Added Unit Tests to ./test/**test.js**
+- Created **lib.js** to house module code and passed all tests
+
+![5 Tests Passing](http://i.imgur.com/eWbLqRg.png "all tests pass")
+
+- created **commandLineApp.js** to showcase the work.
 
 
+### Getting Travis to Verify Unit Tests (Build)
 
+Because Travid CI will only be able to test the code if it has the GitHub
+username and password I had to create a dummy github user...
 
 
 ### Background & Research
