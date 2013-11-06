@@ -125,29 +125,11 @@ explore what it looks like first.
     "received_events_url": "https://api.github.com/users/jasny/received_events",
     "type": "User",
     "site_admin": false
-}, {
-    "login": "hij1nx",
-    "id": 136109,
-    "avatar_url": "https://2.gravatar.com/avatar/2c03b6faf7b9816f159af69e240221fd?d=https://identicons.github.com/ba4b7ee018c64f0139f37618abfaf498.png&r=x",
-    "gravatar_id": "2c03b6faf7b9816f159af69e240221fd",
-    "url": "https://api.github.com/users/hij1nx",
-    "html_url": "https://github.com/hij1nx",
-    "followers_url": "https://api.github.com/users/hij1nx/followers",
-    "following_url": "https://api.github.com/users/hij1nx/following{/other_user}",
-    "gists_url": "https://api.github.com/users/hij1nx/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/hij1nx/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/hij1nx/subscriptions",
-    "organizations_url": "https://api.github.com/users/hij1nx/orgs",
-    "repos_url": "https://api.github.com/users/hij1nx/repos",
-    "events_url": "https://api.github.com/users/hij1nx/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/hij1nx/received_events",
-    "type": "User",
-    "site_admin": false
 }]
 ```
 
-Followers is not what this project requires so went digging through the API 
-and found **repos** method:
+**Followers** is **not** what this project requires so went digging 
+through the API and found **repos** method:
 
 ```javascript
 var Client = require('github');
@@ -163,9 +145,10 @@ github.repos.getAll({user: "nelsonic"}, function(err, res) {
 });
 ```
 
-Anoyingly, the repos method returns the following **error**:
+Anoyingly, the repos method returns the following **error** 
+(need to be authenticated to retrieve repo info):
 
-```
+```sh
 REQUEST:  { host: 'api.github.com',
   port: 443,
   path: '/user/repos',
@@ -242,6 +225,68 @@ e.g:
 I filed an issue with the module creator/mantainer:
 https://github.com/mikedeboer/node-github/issues/108
 
+This is quite annoying because I'm *so* close...!! :-(
+The following test returns *exactly* the result I need 
+(just not for an arbitrary user!):
+
+```javascript
+var Client = require('github');
+
+var github = new Client({
+    debug: true,
+    version: "3.0.0"
+});
+
+github.authenticate({
+    type: "basic",
+    username: "nelsonic",
+    password: "****"
+});
+
+github.repos.getAll({user: "alibzafar"}, function(err, res) {
+    console.log("GOT ERR?", err);
+    // console.log("GOT RES?", res);
+    for (var i = 0, j = res.length; i < j; i += 1) {
+        console.log(res[i].language)
+    }
+});
+```
+
+Outputs:
+
+```javascript
+JavaScript
+Ruby
+null
+null
+PHP
+PHP
+null
+null
+C++
+JavaScript
+JavaScript
+CoffeeScript
+null
+null
+JavaScript
+null
+JavaScript
+null
+null
+JavaScript
+JavaScript
+null
+JavaScript
+Apex
+JavaScript
+JavaScript
+JavaScript
+CoffeeScript
+```
+
+note: we would simply ignore the *null* values...
+
 
 Then decided to try the oauth example:
 https://github.com/mikedeboer/node-github/blob/master/test/oauth.js
@@ -302,8 +347,11 @@ Which gave the following output:
 }
 ```
 
-Still not returning the repos for the user I am specifying in the parameter!
+Still not returning the repos for the user I am specifying 
+in the `user: "alibzafar"` parameter!
 Thinking I might have to take a different approach here...
+
+
 
 
 ### Background & Research
