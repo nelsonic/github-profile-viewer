@@ -5,7 +5,9 @@ A simple command-line &amp; web app that displays preferred programming language
 
 - - -
 
-### Quick Start 
+## Quick Start 
+
+### Command Line App
 
 If you want to try out this on your own machine, simply clone this repo:
 
@@ -20,6 +22,14 @@ and input your GitHub username & password:
 cp config-SAMPLE.json config.json && vi config.json
 ```
 
+Now you can run commands on the command line (username is an 
+*arbitrary* GitHub username of your chosing:
+
+```sh
+node commandLineApp username
+```
+
+![a few examples](http://i.imgur.com/tpARRpB.png "sample output from command line app")
 
 
 
