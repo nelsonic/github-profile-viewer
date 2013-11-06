@@ -1,15 +1,5 @@
-var Client = require('github');
-var config = require('./config.json'); // remember to add your user/pass!
-var github = new Client({
-    // debug: true,
-    version: "3.0.0"
-});
-
-github.authenticate({
-    type: "basic",
-    username: config.github.username,
-    password: config.github.password
-});
+var Client = require('github') 
+var github = new Client({ version: "3.0.0"});
  
 var FL = {};  // Favorite Language (FL) Module
 
@@ -22,13 +12,13 @@ FL.getListOfLanguagesForUser = function(username, callback) {
         }
         for (var i = 0, j = res.length; i < j; i += 1) {
             // keep a tally of the frequency of language
-            if(languages[res[i].language]>0){
+            if(languages[res[i].language] > 0){
                 languages[res[i].language] += 1;
             } else {
                 languages[res[i].language] = 1;
             }           
         }
-        delete languages[null]; // null values are useless
+        delete languages[null]; // disguard null values
         callback(languages);
     });
 }
