@@ -364,6 +364,25 @@ avoid making my GitHub password public.
 }
 ```
 
+We use this config file in our script in the following way:
+
+```javascript
+var config = require('./config.json');
+github.authenticate({
+    type: "basic",
+    username: config.github.username,
+    password: config.github.password
+});
+```
+
+Now that we know how the GitHub api **getFromUser** method works, we can 
+write a test (with a predictable outcome) and create the CLI mini-app.
+
+A user we can *expect* to *consistently* use **JavaScript** as his 
+**favorite language** is **Douglas Crockford** 
+(see: https://github.com/douglascrockford?tab=repositories)
+
+
 
 
 

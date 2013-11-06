@@ -1,44 +1,20 @@
-var Client = require('github');
-var config = require('../config.json');
-var github = new Client({
-    // debug: true,
-    version: "3.0.0"
-});
+var chai = require('chai');
+var assert = chai.assert; 
+var FL = require('../lib.js');  // our module
 
-github.authenticate({
-    type: "basic",
-    username: config.github.username,
-    password: config.github.password
-});
+describe('GitHub User Favorte Language', function(){
+  describe('Module FL', function(){
 
-var user = process.argv[2];
-console.log('User: %s',user);
-
-var languages = {};
-
-github.repos.getFromUser({user: user}, function(err, res) {
-    if(err) {
-        console.log("ERR:", err);        
-    }
-    for (var i = 0, j = res.length; i < j; i += 1) {
-        // console.log(res[i].language)
-        if(languages[res[i].language]>0){
-            languages[res[i].language] += 1;
-        } else {
-            languages[res[i].language] = 1;
-        }           
-    }
-    delete languages[null]; // null values are useless
-
-    // sort the list of languages by frequency:
-    var keysSorted = Object.keys(languages).sort(function(a,b) {
-        return languages[b] - languages[a]
+    it('should have a getFavoriteLanguageForUser Method', function(){
+      assert.equal(typeof FL, 'object');
+      assert.equal(typeof FL.getFavoriteLanguageForUser, 'function');
     })
-    var favLang = keysSorted[0]
-    console.log("Favorite Language: %s (%s repos)", favLang, languages[favLang] );
-    console.log("\nIn Decending Order: ");
-    for (var i = 0, j = keysSorted.length; i < j; i += 1) {
-        console.log(keysSorted[i] +" : " +languages[keysSorted[i]]);          
-    }
-    // console.log(languages);
-});
+
+    it('FL.getFavoriteLanguageForUser("douglascrockford") should return "JavaScript"', function(){
+        var username = "douglascrockford";
+        var favoriteLanguage = FL.getFavoriteLanguageForUser(username);
+        assert.equal(favoriteLanguage, 'JavaScript');
+    })
+
+  })
+}) 
