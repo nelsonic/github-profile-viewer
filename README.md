@@ -225,70 +225,7 @@ e.g:
 I filed an issue with the module creator/mantainer:
 https://github.com/mikedeboer/node-github/issues/108
 
-This is quite annoying because I'm *so* close...!! :-(
-The following test returns *exactly* the result I need 
-(just not for an arbitrary user!):
-
-```javascript
-var Client = require('github');
-
-var github = new Client({
-    debug: true,
-    version: "3.0.0"
-});
-
-github.authenticate({
-    type: "basic",
-    username: "nelsonic",
-    password: "****"
-});
-
-github.repos.getAll({user: "alibzafar"}, function(err, res) {
-    console.log("GOT ERR?", err);
-    // console.log("GOT RES?", res);
-    for (var i = 0, j = res.length; i < j; i += 1) {
-        console.log(res[i].language)
-    }
-});
-```
-
-Outputs:
-
-```javascript
-JavaScript
-Ruby
-null
-null
-PHP
-PHP
-null
-null
-C++
-JavaScript
-JavaScript
-CoffeeScript
-null
-null
-JavaScript
-null
-JavaScript
-null
-null
-JavaScript
-JavaScript
-null
-JavaScript
-Apex
-JavaScript
-JavaScript
-JavaScript
-CoffeeScript
-```
-
-note: we would simply ignore the *null* values...
-
-
-Then decided to try the oauth example:
+decided to try the oauth example:
 https://github.com/mikedeboer/node-github/blob/master/test/oauth.js
 
 Which gave the following output:
@@ -350,6 +287,83 @@ Which gave the following output:
 Still not returning the repos for the user I am specifying 
 in the `user: "alibzafar"` parameter!
 Thinking I might have to take a different approach here...
+
+The following test returns *exactly* the result I need 
+(just not for an arbitrary user!):
+
+```javascript
+var Client = require('github');
+
+var github = new Client({
+    debug: true,
+    version: "3.0.0"
+});
+
+github.authenticate({
+    type: "basic",
+    username: "nelsonic",
+    password: "****"
+});
+
+github.repos.getAll({user: "alibzafar"}, function(err, res) {
+    console.log("GOT ERR?", err);
+    // console.log("GOT RES?", res);
+    for (var i = 0, j = res.length; i < j; i += 1) {
+        console.log(res[i].language)
+    }
+});
+```
+
+Outputs:
+
+```javascript
+JavaScript
+Ruby
+null
+null
+PHP
+PHP
+null
+null
+C++
+JavaScript
+JavaScript
+CoffeeScript
+null
+null
+JavaScript
+null
+JavaScript
+null
+null
+JavaScript
+JavaScript
+null
+JavaScript
+Apex
+JavaScript
+JavaScript
+JavaScript
+CoffeeScript
+```
+
+**Note**: we would simply ignore the *null* values...
+(where GitHub has not been able to determine the language from the repo!)
+
+a bit more *digging* revealed the **getFromUser** method. #**bingo**!
+
+Still requires (basic) authentication, so created a **config.json** file to 
+avoid making my GitHub password public.
+
+```javascript
+{
+    "github" : {
+        "username" : "your-github-username",
+        "password" : "*********"
+    }
+}
+```
+
 
 
 
