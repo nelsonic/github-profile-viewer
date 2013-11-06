@@ -7,12 +7,12 @@ A simple command-line &amp; web app that displays preferred programming language
 
 ## Quick Start 
 
-### Command Line App
-
 If you want to try out this on your own machine, simply clone this repo:
 
 ```sh
 git clone git@github.com:nelsonic/github-profile-viewer.git
+cd github-profile-viewer
+npm install
 ```
 
 Create your GitHub authentication configuration file using the sample
@@ -21,6 +21,22 @@ and input your GitHub username & password:
 ```sh
 cp config-SAMPLE.json config.json && vi config.json
 ```
+### Confirm its Working by Running the Unit Tests
+
+Once you have added your GitHub username & password to the **config.json**
+file, you can test that everything is working by running:
+
+```sh
+npm test
+```
+You should expect to see something like:
+
+![tests passing](http://i.imgur.com/Zg2AEX4.png "tests passing")
+or
+![tests passing](http://i.imgur.com/UzHJEIb.png "tests passing")
+
+
+### A. Command Line App
 
 Now you can run commands on the command line (username is an 
 *arbitrary* GitHub username of your chosing:
